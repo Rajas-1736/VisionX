@@ -546,9 +546,9 @@ export const ReportPage: React.FC<ReportPageProps> = ({ scanId, onBackToScan, fr
                       let isReview = false;
 
                       if (editedInfo) {
-                        if (editedInfo.status_override === 'COMPLIANT' || editedInfo.compliance_status === true) {
+                        if ((editedInfo as any).status_override === 'COMPLIANT' || (editedInfo as any).compliance_status === true) {
                           isFound = true;
-                        } else if (editedInfo.status_override === 'NON_COMPLIANT' || editedInfo.compliance_status === false) {
+                        } else if ((editedInfo as any).status_override === 'NON_COMPLIANT' || (editedInfo as any).compliance_status === false) {
                           isFound = false;
                         } else if (linkedRule) {
                           isFound = linkedRule.status === 'PASS';
@@ -736,7 +736,7 @@ export const ReportPage: React.FC<ReportPageProps> = ({ scanId, onBackToScan, fr
 
           const isUspEdited = Boolean(scan.edited_fields?.['unit_sale_price']);
           const isUspCompliant = isUspEdited 
-            ? (scan.edited_fields?.['unit_sale_price']?.status_override === 'COMPLIANT' || scan.edited_fields?.['unit_sale_price']?.compliance_status === true)
+            ? ((scan.edited_fields?.['unit_sale_price'] as any)?.status_override === 'COMPLIANT' || (scan.edited_fields?.['unit_sale_price'] as any)?.compliance_status === true)
             : usp.is_compliant;
           const uspRemarks = isUspEdited
             ? `Manually verified as ${isUspCompliant ? 'COMPLIANT' : 'NON-COMPLIANT'} by inspector under PCR 2011.`
@@ -897,9 +897,9 @@ export const ReportPage: React.FC<ReportPageProps> = ({ scanId, onBackToScan, fr
 
                       let isCompliantFinal = mRow.isCompliant;
                       if (editedInfo) {
-                        if (editedInfo.status_override === 'COMPLIANT' || editedInfo.compliance_status === true) {
+                        if ((editedInfo as any).status_override === 'COMPLIANT' || (editedInfo as any).compliance_status === true) {
                           isCompliantFinal = true;
-                        } else if (editedInfo.status_override === 'NON_COMPLIANT' || editedInfo.compliance_status === false) {
+                        } else if ((editedInfo as any).status_override === 'NON_COMPLIANT' || (editedInfo as any).compliance_status === false) {
                           isCompliantFinal = false;
                         }
                       } else if (linkedRule) {
