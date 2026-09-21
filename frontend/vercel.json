@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://visionx-production-e44f.up.railway.app/api/:path*"
+    }
+  ]
+}
